@@ -43,15 +43,18 @@
             <div class="text-center">
                 <h1 class="text-[#100F0F] font-semibold text-4xl pb-8">Search your phone</h1>
                 <div class="border-2  w-8/12 mx-auto flex items-center rounded-lg bg-[#100F0F0D]">
-                    <input type="text" placeholder="Search your phone"
+                    <input id="input-area" type="text" placeholder="Search your phone"
                         class="input focus:border-none focus:outline-none w-full bg-[#100F0F0D]" />
-                    <button class="btn bg-[#0D6EFD] text-white hover:bg-[#0D6EFD]">Search</button>
+                    <button onclick="searchBtn()" class="btn bg-[#0D6EFD] text-white hover:bg-[#0D6EFD]">Search</button>
                 </div>
             </div>
         </section>
         <section class="container mx-auto px-4 lg:px-0 pb-32">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="text-center p-6 border-2 rounded-xl">
+            <div id="loading" class="text-center hidden">
+                <span class="loading loading-spinner text-secondary"></span>
+            </div>
+            <div id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- <div class="text-center p-6 border-2 rounded-xl">
                     <div class="p-12 bg-[#0D6EFD0D] rounded-2xl">
                         <img class="mx-auto" src="images/pngwing 3.svg" alt="">
                     </div>
@@ -62,46 +65,43 @@
                         <h4 class="text-2xl text-[#403F3F] font-bold pb-4">$999</h4>
                         <button class="btn bg-[#0D6EFD] text-white hover:bg-[#0D6EFD]">Show Details</button>
                     </div>
-                </div>
-                <div class="text-center p-6 border-2 rounded-xl">
-                    <div class="p-12 bg-[#0D6EFD0D] rounded-2xl">
-                        <img class="mx-auto" src="images/pngwing 3.svg" alt="">
-                    </div>
-                    <div class="pt-6">
-                        <h2 class="text-2xl text-[#403F3F] font-bold pb-5">Iphone 13 Pro Max</h2>
-                        <p class="pb-2 text-base font-[#706F6F]">There are many variations of passages of available, but
-                            the majority have suffered</p>
-                        <h4 class="text-2xl text-[#403F3F] font-bold pb-4">$999</h4>
-                        <button class="btn bg-[#0D6EFD] text-white hover:bg-[#0D6EFD]">Show Details</button>
-                    </div>
-                </div>
-                <div class="text-center p-6 border-2 rounded-xl">
-                    <div class="p-12 bg-[#0D6EFD0D] rounded-2xl">
-                        <img class="mx-auto" src="images/pngwing 3.svg" alt="">
-                    </div>
-                    <div class="pt-6">
-                        <h2 class="text-2xl text-[#403F3F] font-bold pb-5">Iphone 13 Pro Max</h2>
-                        <p class="pb-2 text-base font-[#706F6F]">There are many variations of passages of available, but
-                            the majority have suffered</p>
-                        <h4 class="text-2xl text-[#403F3F] font-bold pb-4">$999</h4>
-                        <button class="btn bg-[#0D6EFD] text-white hover:bg-[#0D6EFD]">Show Details</button>
-                    </div>
-                </div>
-                <div class="text-center p-6 border-2 rounded-xl">
-                    <div class="p-12 bg-[#0D6EFD0D] rounded-2xl">
-                        <img class="mx-auto" src="images/pngwing 3.svg" alt="">
-                    </div>
-                    <div class="pt-6">
-                        <h2 class="text-2xl text-[#403F3F] font-bold pb-5">Iphone 13 Pro Max</h2>
-                        <p class="pb-2 text-base font-[#706F6F]">There are many variations of passages of available, but
-                            the majority have suffered</p>
-                        <h4 class="text-2xl text-[#403F3F] font-bold pb-4">$999</h4>
-                        <button class="btn bg-[#0D6EFD] text-white hover:bg-[#0D6EFD]">Show Details</button>
-                    </div>
-                </div>
+                </div> -->
             </div>
             <div class="text-center pt-12">
-                <button class="btn bg-[#0D6EFD] text-white hover:bg-[#0D6EFD]">Show Details</button>
+                <button id="show-all" class="hidden btn bg-[#0D6EFD] text-white hover:bg-[#0D6EFD]">Show All</button>
+            </div>
+            <!-- modal -->
+            <div>
+                <!-- You can open the modal using ID.showModal() method -->
+                <dialog id="my_modal_3" class="modal">
+                    <div id="modal-container" class="modal-box">
+                        <div class="space-y-3">
+                            <img src="images/banner.svg" alt="">
+                            <h2 class="text-3xl font-bold text-[#403F3F]">Iphone 13 Pro Max</h2>
+                            <p class="text-base text-[#706F6F]">It is a long established fact that a reader will be
+                                distracted by the readable content of a page when looking at its layout.</p>
+                            <p class="text-[#706F6F]"><span class="text-[#403F3F] font-semibold text-xl">Storage:
+                                </span>128GB/256GB/1TB Storage, No card slot</p>
+                            <p class="text-[#706F6F]"><span class="text-[#403F3F] font-semibold text-xl">Display Size :
+                                </span>6.7 Inches, 109.8 cm</p>
+                            <p class="text-[#706F6F]"><span class="text-[#403F3F] font-semibold text-xl">Chipset :
+                                </span>Apple A15 Bionic</p>
+                            <p class="text-[#706F6F]"><span class="text-[#403F3F] font-semibold text-xl">Memory :
+                                </span>Apple A15 Bionic</p>
+                            <p class="text-[#706F6F]"><span class="text-[#403F3F] font-semibold text-xl">Slug :
+                                </span>Apple A15 Bionic</p>
+                            <p class="text-[#706F6F]"><span class="text-[#403F3F] font-semibold text-xl">Release data :
+                                </span>Apple A15 Bionic</p>
+                            <p class="text-[#706F6F]"><span class="text-[#403F3F] font-semibold text-xl">Brand :
+                                </span>Apple A15 Bionic</p>
+                            <p class="text-[#706F6F]"><span class="text-[#403F3F] font-semibold text-xl">GPS :
+                                </span>Apple A15 Bionic</p>
+                            <form class="text-right" method="dialog">
+                                <button class="btn bg-[#0D6EFD] text-white hover:bg-[#0D6EFD]">close</button>
+                            </form>
+                        </div>
+                    </div>
+                </dialog>
             </div>
         </section>
     </main>
@@ -135,7 +135,7 @@
                     <li><a href="#">Company jobs</a></li>
                 </ul>
                 <ul class="text-[#403F3F] text-xl font-medium space-y-2">
-                    <li><a href="#">Popular</a></li>
+                    <li><a id="suman" href="#">Popular</a></li>
                     <li><a href="#">UIUX Design</a></li>
                     <li><a href="#">Product Design</a></li>
                     <li><a href="#">Back-End Developer</a></li>
